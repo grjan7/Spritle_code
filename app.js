@@ -8,6 +8,10 @@
 
 //A command - line option called leaderboard should be accepted.Your application should return the most popular joke depending on how many times it appears in jokes.txt if that command - line input is passed in.
 
+
+//Usage: run a `node app.js`
+// run `node app.js --leaderboard`. Note: this need to be implemented to fetch popular joke.
+
 "use strict";
 
 const request = require('request');
@@ -56,7 +60,7 @@ if (process.argv.length > 2) {
     readFile("jokes.txt", "utf-8", (err, data) => {
       if (err) { return }
       let jokesList = data.split("\n");
-      //jokesList.forEach()
+      //Note: need to implement the getting ppupular joke.
       console.log(jokesList);
     })
   }
