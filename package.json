@@ -1,0 +1,22 @@
+{
+  "name": "spritle_code",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grjan7/Spritle_code.git"
+  },
+  "author": "Jana Rangasamy <janagr7@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grjan7/Spritle_code/issues"
+  },
+  "homepage": "https://github.com/grjan7/Spritle_code#readme",
+  "dependencies": {
+    "request": "^2.88.2"
+  }
+}
