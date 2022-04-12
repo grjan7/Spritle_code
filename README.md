@@ -3,5 +3,6 @@ test
 
 #Run as follows
 
-node app.js
-node app.js --leaderboard
+`node app.js`
+
+`node app.js --leaderboard`
