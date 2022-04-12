@@ -2,7 +2,7 @@
   "name": "spritle_code",
   "version": "1.0.0",
   "description": "test",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
