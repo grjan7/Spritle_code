@@ -78,9 +78,9 @@ const getPopularJoke = () => {
 
 let help = `
   Usage:\n
-  node <file> <option>\n\n
+  node <file> <option>\n
   option:
-  --search <text>\t\t text to be matched
+  --search <text>\t text to be matched
   --leaderboard\t\t logs the popular joke object to the console.\n`
 
 if (process.argv.length > 2) {
@@ -93,8 +93,13 @@ if (process.argv.length > 2) {
       break;
     case "--search":
       let queryText = process.argv[3];
-      request.get(getOptions(queryText), reqCallback);
-      break;
+      try {
+        request.get(getOptions(queryText), reqCallback);
+      } catch (e) {
+        console.error("Connect to the network.");
+      } finally {
+        break;
+      }
 
     case "--help":
       console.log(help);
