@@ -1,8 +1,10 @@
 # Spritle_code
 test
 
-#Run as follows
+#Run with command line option
 
-`node app.js`
+`node app.js --help`
+
+`node app.js --search "dad"`
 
 `node app.js --leaderboard`
