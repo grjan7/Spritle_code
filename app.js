@@ -76,13 +76,37 @@ const getPopularJoke = () => {
 
 //with commandOption --leaderboard
 
-if (process.argv.length > 2) {
-  let commandOption = process.argv[2];
-  if (commandOption == "--leaderboard") {
-    getPopularJoke();
-  }
-}
+let help = `
+  Usage:\n
+  node <file> <option>\n\n
+  option:
+  --search <text>\t\t text to be matched
+  --leaderboard\t\t logs the popular joke object to the console.\n`
 
-request.get(getOptions("dad"), reqCallback);
+if (process.argv.length > 2) {
+
+  let commandOption = process.argv[2].toLowerCase();
+
+  switch (commandOption) {
+    case "--leaderboard":
+      getPopularJoke();
+      break;
+    case "--search":
+      let queryText = process.argv[3];
+      request.get(getOptions(queryText), reqCallback);
+      break;
+
+    case "--help":
+      console.log(help);
+      break;
+
+    default:
+      console.error("invalid option.")
+      console.log(help)
+  }
+
+} else {
+  console.log(help);
+}
 
 
