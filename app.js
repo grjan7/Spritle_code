@@ -14,13 +14,15 @@
 
 
 //Usage: run a `node app.js`
-// run `node app.js --leaderboard`. Note: this need to be implemented to fetch popular joke.
+// run `node app.js --leaderboard`.
+/**
+ * @author Jana Rangasamy<janagr7@gmail.com>
+ */
 
 
-
-const request = require('request');
-const getMaxFromArray = require("./getMaxFromArray");
-const { readFile, appendFile } = require('fs');
+const request = require('request')
+const getMaxFromArray = require("./getMaxFromArray")
+const { readFile, appendFile } = require('fs')
 
 const getOptions = (searchText) => {
   return {
@@ -33,24 +35,19 @@ const getOptions = (searchText) => {
 }
 
 const reqCallback = (error, response, body) => {
-
   if (error) {
     console.log(error)
     return
   }
-
   let parsedBody = JSON.parse(body)
   let matchedJokes = parsedBody.results
 
   if (matchedJokes.length > 0) {
-
     let randomJokeIndex = Math.round(Math.random() * (matchedJokes.length - 1))
     let randomJoke = matchedJokes[randomJokeIndex].joke
-
     //output the random joke to console
     console.log(randomJoke)
-    saveToTxtFile(randomJoke)
-
+    saveToTxtFile(randomJoke + "\n")
   } else {
     console.log("Could not find your search text.")
   }
@@ -61,8 +58,6 @@ const saveToTxtFile = async (data) => {
     if (err) {
       console.error(err)
       return
-    } else {
-      console.log("Saved to Jokes.txt")
     }
   })
 }
@@ -74,18 +69,20 @@ const getPopularJoke = () => {
   readFile("jokes.txt", "utf-8", (err, data) => {
     if (err) { return }
     let jokesList = data.split("\n");
-    console.log(jokesList);
-    getMaxFromArray(jokesList);
+    let popularJoke = getMaxFromArray(jokesList);
+    console.log({ popularJoke: popularJoke.item, Matchedcount: popularJoke.count });
   })
 }
+
+//with commandOption --leaderboard
 
 if (process.argv.length > 2) {
   let commandOption = process.argv[2];
   if (commandOption == "--leaderboard") {
-    console.log(`Popular Joke: ${getPopularJoke().item}\n Matchedcount: ${getPopularJoke().count}`);
+    getPopularJoke();
   }
 }
 
-request.get(getOptions("Hello"), reqCallback);
+request.get(getOptions("dad"), reqCallback);
 
 
